@@ -5,6 +5,10 @@ from routers import currency, notifications
 
 app = FastAPI()
 
+@app.get("/api")
+async def root():
+    return {"message": "CryptoTracker API is available"}
+
 app.include_router(users.router)
 app.include_router(currency.router)
 app.include_router(notifications.router)
