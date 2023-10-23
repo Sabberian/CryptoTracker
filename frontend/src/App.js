@@ -13,7 +13,11 @@ const App = () => {
     const response = await fetch("/api", opts);
     const data = await response.json();
 
-    console.log(data);
+    if (!response.ok) {
+      console.log("Error: " + JSON.stringify(response));
+    } else {
+      setMessage(data.message);
+    }
   };
 
   useEffect(() => {
