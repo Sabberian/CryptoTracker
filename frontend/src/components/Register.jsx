@@ -3,6 +3,8 @@ import { UserContext } from "../context/UserContext";
 import { useContext, useState } from "react";
 import ErrorMessage from "./ErrorMessage";
 
+const PASSWORD_MIN_LENGTH = 5
+
 const Register = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -28,12 +30,17 @@ const Register = () => {
 
         const handleSubmit = (e) => {
             e.preventDefault();
-            if (password === passwordConfirmation && password.length > 5) {
+            
+            const isPasswordValid = password === passwordConfirmation && password.length >= PASSWORD_MIN_LENGTH;
+            const isUsernameValid = username.trim() !== "";
+
+            if (isPasswordValid && isUsernameValid) {
                 submitRegistration();
             } else {
-                setErrorMessage(
-                    "Passwords must match and be greater then 5 characters"
-                );
+                const passwordErrorMessage = isPasswordValid ? "" : "Passwords must match and be at least " + PASSWORD_MIN_LENGTH + " characters.";
+                const usernameErrorMessage = isUsernameValid ? "" : "Username is required.";
+        
+                setErrorMessage(`${passwordErrorMessage} ${usernameErrorMessage}`.trim());
             }
         }
 
