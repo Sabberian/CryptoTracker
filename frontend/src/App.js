@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import Register from "./components/Register";
+import Header from "./components/Header";
+import { UserContext } from "./context/UserContext";
 
 const App = () => {
   const [message, setMessage] = useState("");
+  const [token] = useContext(UserContext);
 
   const getWelcomeMessage = async () => {
     const opts = {
@@ -18,6 +22,7 @@ const App = () => {
     } else {
       setMessage(data.message);
     }
+    console.log(data.message);
   };
 
   useEffect(() => {
@@ -26,7 +31,20 @@ const App = () => {
 
   return (
     <div>
-      Hello, world!
+      <Header title={message} />
+      <div className="columns">
+        <div className="column"></div>
+        <div className="column m-5 is-two-thirds ">
+          { !token ? (
+            <div className="columns">
+              <Register /> <p>Login</p>
+            </div>
+          ) : (
+            <p>Table</p>
+          )}
+        </div>
+        <div className="column"></div>
+      </div>
     </div>
   );
 }
