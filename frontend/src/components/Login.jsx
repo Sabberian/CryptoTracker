@@ -4,7 +4,7 @@ import { UserContext } from "../context/UserContext";
 import ErrorMessage from "./ErrorMessage";
 
 const Login = () => {
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [, setToken] = useContext(UserContext);
@@ -13,7 +13,7 @@ const Login = () => {
         const requestOptions = {
             method: "POST",
             headers: {"Content-Type": "application/x-www-form-urlencoded"},
-            body: JSON.stringify(`grant_type=&username=${username}&password=${password}&scope=&client_id=&client_secret=`),
+            body: JSON.stringify(`grant_type=&email=${email}&password=${password}&scope=&client_id=&client_secret=`),
         };
 
         const response = await fetch("/api/token", requestOptions);
@@ -29,8 +29,8 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        if (username.trim() === "" || password.trim() === "") {
-            setErrorMessage("Username and password are required.");
+        if (email.trim() === "" || password.trim() === "") {
+            setErrorMessage("Email and password are required.");
         } else {
             submitLogin();
         }
@@ -43,10 +43,10 @@ const Login = () => {
                     Login
                 </h1>
                 <div className="field">
-                    <label className="label">Username</label>
+                    <label className="label">Email</label>
                     <div className="control">
-                        <input className="input" type="username" placeholder="Enter username"
-                            value={username} onChange={(e) => { setUsername(e.target.value) }} />
+                        <input className="input" type="email" placeholder="Enter email"
+                            value={email} onChange={(e) => { setEmail(e.target.value) }} />
                     </div>
                 </div>
                 <div className="field">

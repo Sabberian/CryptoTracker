@@ -6,7 +6,7 @@ import ErrorMessage from "./ErrorMessage";
 const PASSWORD_MIN_LENGTH = 5
 
 const Register = () => {
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setConfirmation] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
@@ -16,7 +16,7 @@ const Register = () => {
             const requestOptions = {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username: username, password: password }),
+                body: JSON.stringify({ email: email, password: password }),
                 };
 
             const response = await fetch("/api/users", requestOptions);
@@ -32,15 +32,15 @@ const Register = () => {
             e.preventDefault();
             
             const isPasswordValid = password === passwordConfirmation && password.length >= PASSWORD_MIN_LENGTH;
-            const isUsernameValid = username.trim() !== "";
+            const isEmailValid = email.trim() !== "";
 
-            if (isPasswordValid && isUsernameValid) {
+            if (isPasswordValid && isEmailValid) {
                 submitRegistration();
             } else {
                 const passwordErrorMessage = isPasswordValid ? "" : "Passwords must match and be at least " + PASSWORD_MIN_LENGTH + " characters.";
-                const usernameErrorMessage = isUsernameValid ? "" : "Username is required.";
+                const emailErrorMessage = isEmailValid ? "" : "Email is required.";
         
-                setErrorMessage(`${passwordErrorMessage} ${usernameErrorMessage}`.trim());
+                setErrorMessage(`${passwordErrorMessage} ${emailErrorMessage}`.trim());
             }
         }
 
@@ -51,10 +51,10 @@ const Register = () => {
                         Registration
                     </h1>
                     <div className="field">
-                        <label className="label">Username</label>
+                        <label className="label">Email</label>
                         <div className="control">
-                            <input className="input" type="username" placeholder="Enter username"
-                                value={username} onChange={(e) => { setUsername(e.target.value) }} />
+                            <input className="input" type="email" placeholder="Enter email"
+                                value={email} onChange={(e) => { setEmail(e.target.value) }} />
                         </div>
                     </div>
                     <div className="field">

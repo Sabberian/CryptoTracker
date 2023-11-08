@@ -3,7 +3,7 @@ import datetime as dt
 from pydantic import BaseModel, field_validator
 
 class UserBase(BaseModel):
-    username: str
+    email: str
     
 class UserCreate(UserBase):
     password: str

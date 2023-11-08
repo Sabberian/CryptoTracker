@@ -4,11 +4,11 @@ from models import schemas
 from passlib import hash
 from models import models
 
-async def get_user_by_username(username: str, db: Session):
-    return db.query(models.User).filter(models.User.username == username).first()
+async def get_user_by_email(email: str, db: Session):
+    return db.query(models.User).filter(models.User.email == email).first()
 
 async def create_user(user: schemas.UserCreate, db: Session):
-    user_obj = models.User(username=user.username, password=hash.bcrypt.hash(user.password))
+    user_obj = models.User(email=user.email, password=hash.bcrypt.hash(user.password))
     db.add(user_obj)
     db.commit()
     db.refresh(user_obj)

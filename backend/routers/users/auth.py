@@ -15,8 +15,8 @@ JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY")
 
 oauth2schema = fastapi.security.OAuth2PasswordBearer(tokenUrl="/api/token")
 
-async def authenticate_user(username: str, password: str, db: Session):
-    user = await db_functions.get_user_by_username(username=username, db=db)
+async def authenticate_user(email: str, password: str, db: Session):
+    user = await db_functions.get_user_by_email(email=email, db=db)
     
     if not user:
         return False
@@ -38,7 +38,7 @@ async def get_current_user(db: Session=fastapi.Depends(get_db), token: str=fasta
     except Exception as e:
         print(e)
         raise fastapi.HTTPException(
-            status_code=401, detail="Invalid username or password"
+            status_code=401, detail="Invalid email or password"
         )
     
     return schemas.User.from_orm(user)
