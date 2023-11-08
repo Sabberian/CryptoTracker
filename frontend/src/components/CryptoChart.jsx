@@ -9,16 +9,31 @@ function createChart(ctx, data) {
         data: {
             labels: data.timestamps,
             datasets: [{
-                label: "",
+                label: data.currency,
                 data: data.prices,
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: true,
+            layout: {
+                padding: {
+                    top: 20,
+                    bottom: 10,
+                    left: 10,
+                    right: 10,
+                }
+            },
             plugins: {
                 legend: {
                     display: false,
+                },
+                title: {
+                    display: true,
+                    text: data.currency,
+                    font: {
+                        size: 18,
+                    },
                 },
             },
             scales: {
@@ -28,7 +43,7 @@ function createChart(ctx, data) {
                         unit: "hour",
                         stepSize: 1,
                         displayFormats: {
-                            hour: "YYYY-MM-DD HH:mm",
+                            hour: "MM-DD HH:mm",
                         }
                     },
                 },
@@ -61,7 +76,7 @@ const CryptoChart = ({ data }) => {
     }, [data]);
 
     return (
-    <div>
+    <div className="crypto-chart">
         <canvas ref={chartRef} />
             <ChartMenu
                 direction={direction}

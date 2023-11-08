@@ -1,6 +1,22 @@
 from database.database import Base, engine, SessionLocal
 import datetime
+from database import db_functions
+from data_manager import DataManager
 import aiohttp
+
+data_manager = DataManager()
+
+async def get_all_crypto_data(db):
+    crypto_data = {}
+    currencies = await db_functions.get_currencies(db)
+
+    for currency in currencies:
+        data = await get_crypto_history_data(currency.name)
+        if data is not None:
+            crypto_data[currency.name] = filter_crypto_data(data)
+            crypto_data[currency.name]['currency_id'] = currency.id
+    data_manager.update_data(crypto_data)
+
 
 def filter_crypto_data(data):
     end_time = datetime.datetime.now()

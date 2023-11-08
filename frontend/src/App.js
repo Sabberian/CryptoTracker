@@ -22,6 +22,7 @@ const App = () => {
     const cryptoDataPromise = cryptoList.map(async (crypto) => {
       const response = await fetch(`/api/crypto-chart/${crypto.name}`, opts);
       const data = await response.json();
+      data.currency = crypto.name;
       return data;
     });
 

@@ -3,3 +3,8 @@
     align-items: center;
     gap: 10px;
 }
+
+.crypto-chart {
+    margin: auto;
+    margin-bottom: 30px;
+}
