@@ -24,7 +24,7 @@ async def get_notifications(current_user: schemas.User = Depends(auth.get_curren
     return notifications
 
 @router.delete('/api/notifications/{notification_id}')
-async def delete_notifications(notification_id: int, current_user: schemas.User = Depends(auth.get_current_user), db: Session = Depends(auth.get_db)):
+async def delete_notifications(notification_id: int, current_user: schemas.User = Depends(auth.get_current_user), db: Session = Depends(get_db)):
     notification = await db_functions.get_notification(notification_id, db)
     if not notification:
         raise HTTPException(status_code=404, detail="Notification not found")

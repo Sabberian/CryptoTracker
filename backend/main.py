@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from services import create_database
 from routers.users import users
-from routers import currency, notifications
+from routers import currency, notifications, crypto
 
 app = FastAPI()
 
@@ -12,7 +12,7 @@ async def root():
 app.include_router(users.router)
 app.include_router(currency.router)
 app.include_router(notifications.router)
-
+app.include_router(crypto.router)
 
 if __name__ == "__main__":
     create_database()

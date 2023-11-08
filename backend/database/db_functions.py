@@ -49,3 +49,7 @@ async def get_currency_by_id(currency_id: int, db: Session):
 async def get_currency_by_name(currency_name: str, db: Session):
     currency = db.query(models.Currency).filter(models.Currency.name == currency_name).first()
     return currency
+
+async def get_currencies(db: Session):
+    currencies = db.query(models.Currency).all()
+    return currencies
