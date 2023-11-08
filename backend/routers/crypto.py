@@ -18,4 +18,5 @@ async def get_crypto_chart(currency_name: str, db: Session = Depends(get_db)):
         raise HTTPException(status_code=500, detail="Failed to fetch cryptocurrency data")
 
     filtered_data = filter_crypto_data(data)
+    filtered_data['currency_id'] = currency.id
     return filtered_data

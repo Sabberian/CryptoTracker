@@ -6,7 +6,6 @@ import Login from "./components/Login";
 import CryptoChart from "./components/CryptoChart";
 
 const App = () => {
-  const [message, setMessage] = useState("");
   const [cryptoData, setCryptoData] = useState([]);
   const [token] = useContext(UserContext);
 
@@ -18,9 +17,7 @@ const App = () => {
       }
     };
     const cryptoListResponse = await fetch("/api/currencies", opts);
-    console.log(cryptoListResponse);
     const cryptoList = await cryptoListResponse.json();
-    console.log(cryptoList);
 
     const cryptoDataPromise = cryptoList.map(async (crypto) => {
       const response = await fetch(`/api/crypto-chart/${crypto.name}`, opts);
@@ -45,19 +42,24 @@ const App = () => {
     if (!response.ok) {
       console.log("Error: " + JSON.stringify(response));
     } else {
-      setMessage(data.message);
+      console.log(data.message);
     }
-    console.log(data.message);
   };
 
   useEffect(() => {
     getWelcomeMessage();
     loadCryptoData();
+
+    const interval = setInterval(loadCryptoData, 60000);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   return (
     <div>
-      <Header title={message} />
+      <Header />
       <div className="columns">
         <div className="column"></div>
         <div className="column m-5 is-two-thirds ">

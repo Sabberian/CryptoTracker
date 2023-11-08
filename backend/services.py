@@ -1,6 +1,5 @@
 from database.database import Base, engine, SessionLocal
 import datetime
-import requests
 import aiohttp
 
 def filter_crypto_data(data):
@@ -15,7 +14,7 @@ def filter_crypto_data(data):
         timestamps.append(current_time.strftime('%Y-%m-%d %H:%M'))
         current_time += datetime.timedelta(hours=1)
 
-    filtered_data = {'timestamps': [], 'prices': []}
+    filtered_data = {'currency_id': None, 'timestamps': [], 'prices': []}
 
     for timestamp, price in zip(timestamps, data['prices']):
         filtered_data['timestamps'].append(timestamp)
