@@ -33,7 +33,7 @@ const ChartMenu = ({ direction, setDirection, currencyId }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        const isPriceValid = parseFloat(price) > 0;
+        const isPriceValid = parseFloat(price.replace(",", ".")) > 0;
         
         if (isPriceValid) {
 
@@ -75,7 +75,7 @@ const ChartMenu = ({ direction, setDirection, currencyId }) => {
 
     return (
         <div className="chart-menu">
-            <input className="input is-primary" type="number" placeholder="Price" name="price" value={price} onChange={(e) => setPrice(e.target.value)}/>
+            <input className="input is-primary" type="text" placeholder="Price" name="price" value={price} onChange={(e) => setPrice(e.target.value)}/>
             <button
                 onClick={() => setDirection("up")}
                 className={`button is-info ${direction === "up" ? "" : "is-light"}`}

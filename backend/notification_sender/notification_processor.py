@@ -2,7 +2,6 @@ import asyncio
 from datetime import datetime
 from database import db_functions
 from notification_sender.email_sender import send_notification_email, create_message
-from datetime import datetime
 
 async def process_notifications(db, crypto_data):
     notifications = await db_functions.get_notifications(db)
@@ -27,8 +26,8 @@ async def process_notifications(db, crypto_data):
                 continue
                 
             await send_notification_email(create_message(user.email, currency.name, threshold, direction, datetime.now().strftime('%m-%d %H:%M'), "$"))
-            # await db_functions.delete_notification(notification.id, db)
-            print("Sent")
+            await db_functions.delete_notification(notification.id, db)
+            print("Sent notification to user: %s" % user.email)
         
 def normalize_crypto_data(crypto_data):
     normalized_data = {}
