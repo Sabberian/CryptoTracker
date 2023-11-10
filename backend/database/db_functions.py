@@ -7,6 +7,9 @@ from models import models
 async def get_user_by_email(email: str, db: Session):
     return db.query(models.User).filter(models.User.email == email).first()
 
+async def get_user_by_id(id: int, db: Session):
+    return db.query(models.User).filter(models.User.id == id).first()
+
 async def create_user(user: schemas.UserCreate, db: Session):
     user_obj = models.User(email=user.email, password=hash.bcrypt.hash(user.password))
     db.add(user_obj)
@@ -35,6 +38,10 @@ async def get_user_notifications(user_id: int, db: Session):
 async def get_notification(notification_id: int, db: Session):
     notification = db.query(models.Notification).filter(models.Notification.id == notification_id).first()
     return notification
+
+async def get_notifications(db: Session):
+    notifications = db.query(models.Notification).all()
+    return notifications
 
 async def delete_notification(notification_id: int, db: Session):
     notification = db.query(models.Notification).filter(models.Notification.id == notification_id).first()

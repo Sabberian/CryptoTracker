@@ -16,7 +16,7 @@ async def get_all_crypto_data(db):
             crypto_data[currency.name] = filter_crypto_data(data)
             crypto_data[currency.name]['currency_id'] = currency.id
     data_manager.update_data(crypto_data)
-
+    return crypto_data
 
 def filter_crypto_data(data):
     end_time = datetime.datetime.now()

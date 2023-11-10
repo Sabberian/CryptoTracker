@@ -3,6 +3,7 @@ from services import create_database, get_all_crypto_data, get_db
 from routers.users import users
 from routers import currency, notifications, crypto
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from notification_sender.notification_processor import process_notifications, normalize_crypto_data
 import asyncio
 
 app = FastAPI()
@@ -17,7 +18,9 @@ app.include_router(notifications.router)
 app.include_router(crypto.router)
 
 async def start_update_jobs():
-    await get_all_crypto_data(next(get_db()))
+    db = next(get_db())
+    data = await get_all_crypto_data(db)
+    await process_notifications(db, data)
 
 if __name__ == "__main__":
     create_database()
