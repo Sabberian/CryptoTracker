@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  caddy:
+    image: caddy:latest
+    networks:
+      - proxyNetwork
+    depends_on:
+      - backend
+      - frontend
+    ports:
+      - 80:80
+    volumes:
+      - type: bind
+        source: ./proxy/Caddyfile
+        target: /etc/caddy/Caddyfile
+  backend:
+    image: crypto-tracker-backend:latest
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    networks:
+      - proxyNetwork
+  frontend:
+    image: crypto-tracker-frontend:latest
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+    networks:
+      - proxyNetwork
+
+networks:
+  proxyNetwork:

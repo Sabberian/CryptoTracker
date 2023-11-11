@@ -45,7 +45,6 @@ const ChartMenu = ({ direction, setDirection, currencyId }) => {
                 user_id: currentUser.id,
                 currency_id: currencyId,
             };
-            console.log(notificationData);
             try {
                 const requestOptions = {
                     method: "POST",
