@@ -6,6 +6,8 @@ WORKDIR /backend
 
 COPY . /backend
 
-RUN pip install -r ./requirements.txt
+RUN python3 -m pip install --upgrade pip --progress-bar off
+
+RUN pip install -r ./requirements.txt --progress-bar off
 
 CMD ["python", "./main.py"]

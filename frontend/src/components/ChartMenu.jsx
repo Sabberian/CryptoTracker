@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import ErrorMessage from "./ErrorMessage";
 import { UserContext } from "../context/UserContext";
+import { apiUrl } from "../config/config";
 
 const ChartMenu = ({ direction, setDirection, currencyId }) => {
     const [price, setPrice] = useState("");
@@ -16,7 +17,7 @@ const ChartMenu = ({ direction, setDirection, currencyId }) => {
                     "Authorization": `Bearer ${token}`
                 },
             };
-            const response = await fetch("/api/users/me", requestOptions);
+            const response = await fetch(`${apiUrl}/users/me`, requestOptions);
             if (response.ok) {
                 const user = await response.json();
                 return user;
@@ -55,7 +56,7 @@ const ChartMenu = ({ direction, setDirection, currencyId }) => {
                     body: JSON.stringify(notificationData),
                 };
     
-                const response = await fetch("/api/notifications", requestOptions);
+                const response = await fetch(`${apiUrl}/notifications`, requestOptions);
                 if (response.ok) {
                     setPrice("");
                     setErrorMessage("");

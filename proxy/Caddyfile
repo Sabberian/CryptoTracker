@@ -1,9 +1,2 @@
-localhost {
-    handle_path /api* {
-        reverse_proxy http://localhost:8080 {
-            header_up X-Forwarded-Host {host}
-            header_up Host {upstream_hostport}
-            header_up X-Real-IP {remote_host}
-        }
-    }
-}
+localhost
+reverse_proxy /api/* localhost:8080

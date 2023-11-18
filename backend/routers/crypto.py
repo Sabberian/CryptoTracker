@@ -2,7 +2,6 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database import db_functions
 from services import get_db, get_crypto_history_data, filter_crypto_data, data_manager
-
 router = APIRouter()
 
 @router.get("/api/crypto-chart/{currency_name}")

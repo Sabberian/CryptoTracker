@@ -1,4 +1,5 @@
 import React, {createContext, useState, useEffect} from "react";
+import { apiUrl } from "../config/config";
 
 export const UserContext = createContext();
 
@@ -14,7 +15,7 @@ export const UserProvider = (props) => {
                     "Authorization": "Bearer " + token,
                 },
             };
-            const response = await fetch("/api/users/me", requestOptions);
+            const response = await fetch(`${apiUrl}/users/me`, requestOptions);
 
             if (!response.ok) {
                 setToken(null);

@@ -2,6 +2,7 @@ import React from "react";
 import { UserContext } from "../context/UserContext";
 import { useContext, useState } from "react";
 import ErrorMessage from "./ErrorMessage";
+import { apiUrl } from "../config/config";
 
 const PASSWORD_MIN_LENGTH = 5
 
@@ -19,7 +20,7 @@ const Register = () => {
                 body: JSON.stringify({ email: email, password: password }),
                 };
 
-            const response = await fetch("/api/users", requestOptions);
+            const response = await fetch(`${apiUrl}/users`, requestOptions);
             const data = await response.json();
             if (!response.ok) {
                 setErrorMessage(data.detail);

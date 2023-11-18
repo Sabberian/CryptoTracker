@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
-
 import { UserContext } from "../context/UserContext";
 import ErrorMessage from "./ErrorMessage";
+import { apiUrl } from "../config/config";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -16,7 +16,7 @@ const Login = () => {
             body: JSON.stringify(`grant_type=&username=${email}&password=${password}&scope=&client_id=&client_secret=`),
         };
 
-        const response = await fetch("/api/token", requestOptions);
+        const response = await fetch(`${apiUrl}/token`, requestOptions);
         const data = await response.json();
         
         if (!response.ok) {

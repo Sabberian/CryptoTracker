@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import { UserContext } from "./context/UserContext";
 import Login from "./components/Login";
 import CryptoChart from "./components/CryptoChart";
+import { apiUrl } from "./config/config";
 
 const App = () => {
     const [cryptoData, setCryptoData] = useState([]);
@@ -16,11 +17,11 @@ const App = () => {
                 "Content-Type": "application/json",
             }
         };
-        const cryptoListResponse = await fetch("/api/currencies", opts);
+        const cryptoListResponse = await fetch(`${apiUrl}/currencies`, opts);
         const cryptoList = await cryptoListResponse.json();
 
         const cryptoDataPromise = cryptoList.map(async (crypto) => {
-            const response = await fetch(`/api/crypto-chart/${crypto.name}`, opts);
+            const response = await fetch(`${apiUrl}/crypto-chart/${crypto.name}`, opts);
             const data = await response.json();
             data.currency = crypto.name;
             return data;
@@ -37,7 +38,7 @@ const App = () => {
                 "Content-Type": "application/json",
             }
         };
-        const response = await fetch("/api", opts);
+        const response = await fetch(`${apiUrl}/`, opts);
         const data = await response.json();
 
         if (!response.ok) {
