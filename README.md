@@ -31,9 +31,9 @@ CryptoTracker is an educational project showcasing a FastAPI backend with Docker
     ```
     - `JWT_SECRET_KEY`: A secret key used for encoding JWT tokens.
     - `EMAIL_PASSWORD`: The password for the email account used to send notifications (format: hell owor ldhe llow).
-    - `SERVER`: The SMTP server for sending emails (e.g., smtp.gmail.com).
-    - `PORT`: The port number for the SMTP server (e.g., 587).
-    - `EMAIL`: The email address used for sending notifications.
+    - `EMAIL_SERVER`: The SMTP server for sending emails (e.g., smtp.gmail.com).
+    - `EMAIL_PORT`: The port number for the SMTP server (e.g., 587).
+    - `EMAIL_ADDRESS`: The email address used for sending notifications.
 
 ### Running the Project
 
