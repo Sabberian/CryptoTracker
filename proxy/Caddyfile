@@ -2,7 +2,7 @@ localhost
 
 route /api/* {
     reverse_proxy localhost:8080
-    header_up Access-Control-Allow-Origin {>Origin}
+    header_up Access-Control-Allow-Origin *
     header_up Access-Control-Allow-Methods "GET, OPTIONS, POST, PUT, DELETE"
     header_up Access-Control-Allow-Headers "Content-Type"
     header_up Access-Control-Allow-Credentials "true"
