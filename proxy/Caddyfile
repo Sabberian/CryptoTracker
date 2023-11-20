@@ -1,2 +1,14 @@
 localhost
-reverse_proxy /api/* localhost:8080
+
+route /api/* {
+    reverse_proxy localhost:8080
+    header_up Access-Control-Allow-Origin {>Origin}
+    header_up Access-Control-Allow-Methods "GET, OPTIONS, POST, PUT, DELETE"
+    header_up Access-Control-Allow-Headers "Content-Type"
+    header_up Access-Control-Allow-Credentials "true"
+}
+
+route {
+    file_server /frontend/*
+    try_files {path} {path}/ /index.html
+}
