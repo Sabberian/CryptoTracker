@@ -10,7 +10,7 @@ CryptoTracker is an educational project showcasing a FastAPI backend with Docker
 
 - **Cryptocurrency Tracking:** Monitor cryptocurrency prices in real-time by the 1 hour timescale.
 - **Notification System:** Set thresholds for specific cryptocurrencies and receive email notifications when they are reached.
-- **Custom Currency Support:** Add your custom currency to the API via [http://localhost:8080/api/currency/](http://localhost:8080/api/currency/).
+- **Custom Currency Support:** Add your custom currency to the API via [http://localhost:8080/api/currency/](http://localhost:8080/api/currency/). If the currency does not appear on the website after refreshing the page, make sure you have correctly entered its name.
 - **Interactive Documentation:** Explore API endpoints and usage details at [http://localhost:8080/docs](http://localhost:8080/docs).
 
 ## Getting Started
