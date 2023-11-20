@@ -11,6 +11,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+#Any string key
 JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY")
 
 oauth2schema = fastapi.security.OAuth2PasswordBearer(tokenUrl="/api/token")

@@ -15,9 +15,6 @@ env_*/
 *.pyc
 __pycache__/
 
-# .env file
-.env
-
 # SQL
 *.sqlite
 
