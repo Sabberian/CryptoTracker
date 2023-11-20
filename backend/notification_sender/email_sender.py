@@ -6,12 +6,11 @@ import asyncio
 import os
 from dotenv import load_dotenv
 load_dotenv()
-#Password must be in application format like "abcd efgh qwer asdf"
-PASSWORD = os.environ.get("EMAIL_PASSWORD")
 
-SERVER = "smtp.gmail.com"
-PORT = 587
-EMAIL = "cryptotrackerproject@gmail.com"
+PASSWORD = os.environ.get("EMAIL_PASSWORD")
+SERVER = os.environ.get("EMAIL_SERVER")
+PORT = int(os.environ.get("EMAIL_PORT"))
+EMAIL = os.environ.get("EMAIL_ADDRESS")
 
 
 def generate_notification_message_text(crypto_name: str, price: float, direction: str, date_time: str, currency: str = "") -> str:

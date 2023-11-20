@@ -23,10 +23,17 @@ CryptoTracker is an educational project showcasing a FastAPI backend with Docker
 1. Navigate to the `/backend` directory.
 2. Create a `.env` file with the following content:
     ```
-    JWT_SECRET_KEY=your_secret_key
-    EMAIL_PASSWORD=your_email_password
+        JWT_SECRET_KEY=<any_string>
+        EMAIL_PASSWORD=<your_email_password>
+        SERVER=<your_email_server>
+        PORT=<your_email_port>
+        EMAIL=<your_email_address>
     ```
-   Replace `your_secret_key` with any string for JWT token encryption and `your_email_password` with your third-party application email password in the format "hell owor ldhe llow" (four words separated by spaces).
+    - `JWT_SECRET_KEY`: A secret key used for encoding JWT tokens.
+    - `EMAIL_PASSWORD`: The password for the email account used to send notifications (format: hell owor ldhe llow).
+    - `SERVER`: The SMTP server for sending emails (e.g., smtp.gmail.com).
+    - `PORT`: The port number for the SMTP server (e.g., 587).
+    - `EMAIL`: The email address used for sending notifications.
 
 ### Running the Project
 
