@@ -42,6 +42,9 @@ CryptoTracker is an educational project showcasing a FastAPI backend with Docker
     ```
     docker-compose up --build
     ```
+    ```
+    sudo docker-compose up --build
+    ```
 3. The application will be accessible at [http://localhost:3000](http://localhost:3000).
 
 Explore the API and web interface at [http://localhost:3000](http://localhost:3000). For detailed API documentation, visit [http://localhost:8080/docs](http://localhost:8080/docs).
