@@ -25,9 +25,9 @@ CryptoTracker is an educational project showcasing a FastAPI backend with Docker
     ```
         JWT_SECRET_KEY=<any_string>
         EMAIL_PASSWORD=<your_email_password>
-        SERVER=<your_email_server>
-        PORT=<your_email_port>
-        EMAIL=<your_email_address>
+        EMAIL_SERVER=<your_email_server>
+        EMAIL_PORT=<your_email_port>
+        EMAIL_ADDRESS=<your_email_address>
     ```
     - `JWT_SECRET_KEY`: A secret key used for encoding JWT tokens.
     - `EMAIL_PASSWORD`: The password for the email account used to send notifications (format: hell owor ldhe llow).
