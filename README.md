@@ -35,6 +35,8 @@ CryptoTracker is an educational project showcasing a FastAPI backend with Docker
     - `EMAIL_PORT`: The port number for the SMTP server (e.g., 587).
     - `EMAIL_ADDRESS`: The email address used for sending notifications.
 
+The application is designed to function without email credentials; however, the notification feature will be disabled in the absence of valid email settings.
+
 ### Running the Project
 
 1. Open a terminal and navigate to the project root directory.
